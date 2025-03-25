@@ -1,4 +1,7 @@
-import GetApiImp from "./GetApi";
-import GetImageImp from "./GetImage";
-export const GetApi = GetApiImp
-export const GetImage = GetImageImp
+import ConvertSecondToTimeC from "./ConvertSecondToTimeC";
+import GetApiC from "./GetApiC";
+import GetImageC from "./GetImageC";
+
+export const GetApi = GetApiC
+export const GetImage = GetImageC
+export const ConvertSecondToTime = ConvertSecondToTimeC

@@ -1,4 +1,4 @@
-export default function GetImage(url: string) {
+export default function GetImageC(url: string) {
     if (!url) {
         return ""
     }
