@@ -50,17 +50,17 @@ export default async function WatchPage(req: {
             <div className="font-bold text-2xl">Tập phim</div>
             {data.episodes.map((episodes, i) => {
               return (
-                <div className="sm:bg-[#1B1C26]">
+                <div className="">
                   <div>{episodes.server_name}</div>
-                  <div className=" flex flex-wrap gap-1 sm:gap-2">
+                  <div className=" flex flex-wrap ">
                     {episodes.server_data.map((server_data, j) => {
                       {
                         return (episodesI === (i + "") && serverdataJ === (j + "")) ?
-                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className=" text-center rounded-3xl bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(15%)] py-4" >
+                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className=" text-center rounded-3xl bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(20%)] py-4" >
                             {server_data.name}
                           </Link>
                           :
-                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="bg-black text-center rounded-3xl hover:bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(15%)] py-4" >
+                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="bg-black text-center rounded-3xl hover:bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(20%)] py-4" >
                             {server_data.name}
                           </Link>
 

@@ -1,5 +1,5 @@
 "use client"
-import { IconSearch } from "@/icon";
+import { SearchIcon } from "@/icon";
 import { useState } from "react";
 import { LinkC } from "@/components/Link";
 
@@ -14,7 +14,7 @@ export default function SearchC() {
             <LinkC href={`/search?keyword=${keywword}`} onClick={(e) => {
                 SetKeyword("")
             }} className="">
-                <IconSearch className={"cursor-pointer"}></IconSearch>
+                <SearchIcon className={"cursor-pointer"}></SearchIcon>
             </LinkC>
         </div >
     )

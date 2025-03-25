@@ -1,7 +1,9 @@
 import { lazy } from "react";
 
-export const IconHeart = lazy(() => import("./IconHeart"))
-export const IconSearch = lazy(() => import("./IconSearch"))
-export const IconFullscreen = lazy(() => import("./IconFullscreen"))
-export const IconPlay = lazy(() => import("./IconPlay"))
-export const IconPause = lazy(() => import("./IconPause"))
+export const HeartIcon = lazy(() => import("./HeartIcon"))
+export const SearchIcon = lazy(() => import("./SearchIcon"))
+export const FullscreenIcon = lazy(() => import("./FullscreenIcon"))
+export const PlayIcon = lazy(() => import("./PlayIcon"))
+export const PauseIcon = lazy(() => import("./PauseIcon"))
+export const ExitFullscreenIcon = lazy(() => import("./ExitFullscreenIcon"))
+export const PipIcon = lazy(() => import("./PipIcon"))

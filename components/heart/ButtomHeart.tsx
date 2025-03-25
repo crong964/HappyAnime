@@ -1,5 +1,5 @@
 'use client'
-import { IconHeart } from "@/icon";
+import { HeartIcon } from "@/icon";
 import { iButtomC } from "./interface";
 import { useEffect, useState } from "react";
 
@@ -28,6 +28,6 @@ export default function ButtomHeart(params: iButtomC) {
         }
         localStorage.setItem("ls", JSON.stringify(ls))
     }} {...params} className="cursor-pointer">
-        {!store ? <IconHeart className="text-white" /> : <IconHeart className="text-pink-700" />}
+        {!store ? <HeartIcon className="text-white" /> : <HeartIcon className="text-pink-700" />}
     </button>
 }

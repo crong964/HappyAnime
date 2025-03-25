@@ -4,7 +4,7 @@ import { LinkCLinkProps } from "./interface";
 
 export default function LinkC(p: LinkCLinkProps) {
     return (
-        <Link {...p} className={`${p.className} px-4 py-1 rounded-lg hover:bg-blue-600 text-white`}>
+        <Link {...p} className={`px-4 py-1 rounded-lg hover:bg-blue-600 text-white ${p.className} `}>
             {p.children}
         </Link>
     )
