@@ -15,11 +15,9 @@ export default function CardMovie(p: Item) {
             </div>
             <Link href={`/watch/${p.slug}`} title={p.name} className=" h-max w-full hover:text-blue-500 ">
                 <Image className="w-full sm:w-[150px] h-auto opacity-90 rounded-xl" alt={p.name} width={300} height={100} src={GetImage(p.poster_url)}></Image>
-                <div className="line-clamp-1">{p.name}</div>
+                <div className="line-clamp-1 max-sm:text-sm">{p.name}</div>
             </Link>
         </div>
     )
 }
 
-// href={`/watch/${p.slug}`}
-// } <img loading="lazy" className="w-[150px] h-auto opacity-90 rounded-xl" src={`https://phimimg.com/${p.poster_url}`} alt="" />

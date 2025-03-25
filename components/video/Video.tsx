@@ -4,18 +4,21 @@ import { iVideo } from "./interface"
 
 
 export default function VideoC(p: iVideo) {
-    const videoref = useRef(null)
+    const videoref = useRef<HTMLVideoElement>(null)
     useEffect(() => {
         const f = async () => {
-            var video = document.getElementById('video');
+            var video = document.getElementById('video') as HTMLVideoElement;
+
             if (video == undefined) {
                 return
             }
+
             if (Hls.isSupported()) {
                 var hls = new Hls();
                 hls.loadSource(p.link_m3u8);
                 hls.attachMedia(video);
                 hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    video.play()
 
                 });
             }
@@ -30,9 +33,27 @@ export default function VideoC(p: iVideo) {
         f()
     }, [p.link_m3u8])
     return (
-        <>
-            <video controls id="video" ref={videoref} className="w-full h-auto">
+        <div onClick={() => {
+
+        }} onKeyDown={(e) => {
+            if (videoref.current) {
+
+                switch (e.key) {
+                    case 'ArrowRight':
+                        videoref.current.currentTime += 5
+                        break;
+                    case 'ArrowLeft':
+                        videoref.current.currentTime -= 5
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }} className="w-full h-max relative ">
+            <video id="video" controls ref={videoref} className="w-full h-auto ">
+
             </video>
-        </>
+
+        </div>
     )
 }

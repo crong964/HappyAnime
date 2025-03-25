@@ -65,19 +65,19 @@ export default function Banners(p: iBanners) {
     }
 
     return (
-        <div className="h-[500px] relative ">
+        <div className="h-[200px] sm:h-[500px] relative ">
             {p.ls.filter((v, i) => {
                 return i == s
             }).map((v) => {
                 return (
                     <Banner key={v.name} className="absolute top-0 left-0 flex " name="" thumb_url={v.thumb_url}>
                         <>
-                            <div className="w-1/2 flex items-end justify-start pb-16">
+                            <div className=" w-1/2 sm:flex hidden items-end justify-start pb-16">
                                 <div className=" w-[500px] space-x-1.5 relative">
                                     {e}
                                 </div>
                             </div>
-                            <div className="w-1/2 flex items-center">
+                            <div className="w-1/2 sm:flex hidden items-center">
                                 {cur ?
                                     <div>
                                         <div className="font-bold text-white text-5xl">

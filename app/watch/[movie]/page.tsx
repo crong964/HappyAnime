@@ -34,7 +34,7 @@ export default async function WatchPage(req: {
         <VideoC link_m3u8={url}></VideoC>}
 
       <div className="flex justify-center text-white translate-y-4">
-        <div className="w-full sm:w-[90%] flex space-x-2.5">
+        <div className="w-full sm:w-[90%] flex sm:space-x-2.5">
           <div className="sm:block hidden sm:w-[300px]  rounded-2xl p-7">
             <img src={GetImage(movie.poster_url)} className="w-[180px] mx-2 mb-2 h-auto" alt="" srcSet="" />
             <p className="text-lg">{movie.name}</p>
@@ -46,21 +46,21 @@ export default async function WatchPage(req: {
               )
             })}</div>
           </div>
-          <div className="mx-4 flex-1 max-h-[500px] overflow-y-auto">
+          <div className="sm:mx-4 flex-1 max-h-[500px] overflow-y-auto">
             <div className="font-bold text-2xl">Tập phim</div>
             {data.episodes.map((episodes, i) => {
               return (
-                <div className="bg-[#1B1C26]">
+                <div className="sm:bg-[#1B1C26]">
                   <div>{episodes.server_name}</div>
-                  <div className=" flex flex-wrap gap-2">
+                  <div className=" flex flex-wrap gap-1 sm:gap-2">
                     {episodes.server_data.map((server_data, j) => {
                       {
                         return (episodesI === (i + "") && serverdataJ === (j + "")) ?
-                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className=" text-center rounded-3xl bg-amber-400 w-[calc(30%-8px)] lg:w-[calc(20%-8px)] py-4" >
+                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className=" text-center rounded-3xl bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(15%)] py-4" >
                             {server_data.name}
                           </Link>
                           :
-                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="bg-black text-center rounded-3xl hover:bg-amber-400 w-[calc(30%-8px)] lg:w-[calc(20%-8px)] py-4" >
+                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="bg-black text-center rounded-3xl hover:bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(15%)] py-4" >
                             {server_data.name}
                           </Link>
 

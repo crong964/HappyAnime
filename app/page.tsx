@@ -14,7 +14,7 @@ export default async function Home(req: {
   const data = await GetMovies({ currentPage: 0, totalItemsPerPage: 30 })
   return (
     <div className="w-full text-white ">
-      <div className="w-full sm:block hidden ">
+      <div className="w-full ">
         <Banners ls={[...data.data.items] as unknown as iBannerE[]}>
 
         </Banners>
