@@ -41,7 +41,7 @@ export default function RootLayout({
         {children}
         <Foot></Foot>
       </body>
-      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+      
     </html>
   );
 }

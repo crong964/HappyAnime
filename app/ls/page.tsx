@@ -9,7 +9,7 @@ export default async function LsPage(req: {
     searchParams: Promise<{ page: string }>,
 }) {
     const page = parseInt((await req.searchParams).page || "1")
-    const data = await GetMovies({ currentPage: page, totalItemsPerPage: 30 })
+    const data = await GetMovies({ currentPage: page, totalItemsPerPage: 32 })
     const totalpage = data.data.params.pagination.totalPages
     let e = []
     if (page <= 5) {
@@ -32,14 +32,12 @@ export default async function LsPage(req: {
 
     return (
         <>
-            <div className="w-full flex justify-center ">
-                <div className="w-full sm:w-[70%]">
-                    <div className="my-6 font-bold text-2xl">
-                        Danh sách các phim
-                    </div>
-                    <CardMovies ls={data.data.items} />
-                </div>
 
+            <div className="w-full">
+                <div className="my-6 font-bold text-2xl">
+                    Danh sách các phim
+                </div>
+                <CardMovies ls={data.data.items} />
             </div>
             <div className="mt-5 w-full overflow-x-auto">
                 <div className="flex justify-center space-x-2">{e}</div>

@@ -19,19 +19,19 @@ export default async function Home(req: {
 
         </Banners>
       </div>
-      <div className="w-full flex justify-center ">
-        <div className="w-full lg:w-[70%]">
-          <div>
-            Danh sách các phim
-          </div>
-          
-          <CardMovies ls={data.data.items} />
-          <div className="flex justify-center mt-5">
-            <LinkC className="" href={'/ls?page=1'}><>Xem thêm</></LinkC>
-          </div>
+
+      <div className="w-full">
+        <div>
+          Danh sách các phim
         </div>
 
+        <CardMovies ls={data.data.items} />
+        <div className="flex justify-center mt-5">
+          <LinkC className="" href={'/ls?page=1'}><>Xem thêm</></LinkC>
+        </div>
       </div>
+
+
 
 
       <div className="text-white">

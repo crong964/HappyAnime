@@ -11,7 +11,7 @@ export default function Header() {
                     <> Happy Anime</>
                 </Link>
                 <SearchC />
-                <LinkC href={'/save'} className="sm:block hidden">
+                <LinkC href={'/save'} className="">
                     <i className="text-2xl bi bi-film text-center"></i>
                 </LinkC>
             </div>

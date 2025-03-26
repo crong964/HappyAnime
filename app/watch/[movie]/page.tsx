@@ -31,7 +31,7 @@ export default async function WatchPage(req: {
 
           </>
         </Banner> :
-        <VideoC link_m3u8={url}></VideoC>}
+        <VideoC link_m3u8={url} nameMovie={movie.name}></VideoC>}
 
       <div className="flex justify-center text-white translate-y-4">
         <div className="w-full sm:w-[90%] flex sm:space-x-2.5">

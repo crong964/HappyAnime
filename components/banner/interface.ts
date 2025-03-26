@@ -1,4 +1,4 @@
-import { Category } from "@/app/service/interface/Movies";
+import { Category } from "@/service/interface/Movies";
 import { JSX } from "react";
 
 export interface iBanner {

@@ -6,7 +6,7 @@ import { LinkC } from "@/components/Link";
 export default function SearchC() {
     const [keywword, SetKeyword] = useState("")
     return (
-        <div className="hidden sm:flex p-2 border-2 border-white hover:text-[#F3D68D] rounded-md w-[50%]" >
+        <div className="hidden sm:flex px-2 border-2 border-white hover:text-[#F3D68D] rounded-md w-[50%]" >
             <input onChange={(v) => {
                 let t = v.currentTarget.value
                 SetKeyword(t)
