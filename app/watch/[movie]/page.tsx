@@ -56,13 +56,17 @@ export default async function WatchPage(req: {
                     {episodes.server_data.map((server_data, j) => {
                       {
                         return (episodesI === (i + "") && serverdataJ === (j + "")) ?
-                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className=" text-center rounded-3xl bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(20%)] py-4" >
-                            {server_data.name}
-                          </Link>
+                          <div className="w-1/3 h-auto lg:w-1/5 p-1">
+                            <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
+                              {server_data.name}
+                            </Link>
+                          </div>
                           :
-                          <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="bg-black text-center rounded-3xl hover:bg-amber-400 w-[calc(25%-8px)] lg:w-[calc(20%)] py-4" >
-                            {server_data.name}
-                          </Link>
+                          <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
+                            <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                              {server_data.name}
+                            </Link>
+                          </div>
 
                       }
                     })}

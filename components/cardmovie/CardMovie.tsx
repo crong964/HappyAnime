@@ -8,8 +8,8 @@ import { GetImage } from "@/config";
 
 export default function CardMovie(p: Item) {
     return (
-        <div className="relative w-1/3 md:w-[150px] p-2 md:p-0">
-            <div className="absolute flex justify-between w-full z-20 top-0 right-0 p-1">
+        <div className="relative w-1/3 lg:w-1/7 p-1 lg:p-3  ">
+            <div className="absolute flex justify-between w-full z-20 top-0 right-0 p-1 lg:p-4">
                 <div className="bg-amber-600 text-black text-sm flex items-center p-1 rounded-sm">{p.episode_current.replace("Hoàn Tất", "")}</div>
                 <ButtomHeart {...p as any} />
             </div>
