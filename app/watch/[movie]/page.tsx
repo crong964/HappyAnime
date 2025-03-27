@@ -8,13 +8,13 @@ import Link from "next/link";
 
 export default async function WatchPage(req: {
   params: Promise<{ movie: string }>,
-  searchParams: Promise<{ episodesI: string, serverdataJ: string }>
+  searchParams: Promise<{ a: string, b: string }>
 }) {
   const slug = (await req.params).movie
 
   const data = await GetMovie(slug)
-  const episodesI = (await req.searchParams).episodesI
-  const serverdataJ = (await req.searchParams).serverdataJ
+  const episodesI = (await req.searchParams).a
+  const serverdataJ = (await req.searchParams).b
   let url = ''
   if (episodesI != undefined && serverdataJ != undefined) {
     url = data.episodes[parseInt(episodesI)].server_data[parseInt(serverdataJ)].link_m3u8
@@ -55,21 +55,9 @@ export default async function WatchPage(req: {
                   <div className=" flex flex-wrap ">
                     {episodes.server_data.map((server_data, j) => {
                       {
-                        // return (episodesI === (i + "") && serverdataJ === (j + "")) ?
-                        //   <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
-                        //     <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
-                        //       {server_data.name}
-                        //     </Link>
-                        //   </div>
-                        //   :
-                        //   <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
-                        //     <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
-                        //       {server_data.name}
-                        //     </Link>
-                        //   </div>
                         return <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
                           {(episodesI === (i + "") && serverdataJ === (j + "")) ?
-                            <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
+                            <Link key={server_data.filename} href={`?a=${i}&b=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
                               {server_data.name}
                             </Link> : <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
                               {server_data.name}

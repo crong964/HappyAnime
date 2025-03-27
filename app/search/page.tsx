@@ -8,14 +8,12 @@ export default async function WatchPage(req: {
     const search = await SearchMovies({ keyword: keyword, limit: 20 })
     return (
         <>
-            <div className="flex justify-center">
-                <div className="w-full lg:w-[70%]">
-                    <div className="font-bold text-2xl my-6">Từ khóa tìm kiếm: {keyword}</div>
-                    <CardMovies ls={search.data.items.filter((v) => {
-                        return v.type == "hoathinh"
-                    })} />
-                </div>
-            </div>
+
+            <div className="font-bold text-2xl my-6">Từ khóa tìm kiếm: {keyword}</div>
+            <CardMovies ls={search.data.items.filter((v) => {
+                return v.type == "hoathinh"
+            })} />
+
         </>
     )
 }
