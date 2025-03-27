@@ -13,7 +13,7 @@ export default async function LsPage(req: {
     const totalpage = data.data.params.pagination.totalPages
     let e = []
     if (page <= 5) {
-        for (let i = 0; i < page + 14; i++) {
+        for (let i = 1; i < page + 14; i++) {
             if (i == page) {
                 e.push(<LinkC key={i} className="bg-blue-600" href={`/ls?page=${i}`}><>{i}</></LinkC>)
             } else {
@@ -39,8 +39,10 @@ export default async function LsPage(req: {
                 </div>
                 <CardMovies ls={data.data.items} />
             </div>
-            <div className="mt-5 w-full overflow-x-auto">
-                <div className="flex justify-center space-x-2">{e}</div>
+            <div className="flex justify-center mt-5  ">
+                <div className="mt-5 w-[70%] overflow-x-auto">
+                    <div className="flex justify-around space-x-2">{e}</div>
+                </div>
             </div>
         </>
     )

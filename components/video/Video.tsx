@@ -57,6 +57,12 @@ export default function VideoC(p: iVideo) {
                 hls.attachMedia(video);
                 hls.on(Hls.Events.MANIFEST_PARSED, function (e) {
                     video.play()
+                        .then(() => {
+                            SetIsPlay(true)
+                        })
+                        .catch(() => {
+                            SetIsPlay(false)
+                        })
                     video.ontimeupdate = (e) => {
                         SetCur((video.currentTime / video.duration) * 100)
                         SetCurrentTime(video.currentTime)
