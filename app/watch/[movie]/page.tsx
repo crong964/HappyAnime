@@ -59,7 +59,7 @@ export default async function WatchPage(req: {
                           {(episodesI === (i + "") && serverdataJ === (j + "")) ?
                             <Link key={server_data.filename} href={`?a=${i}&b=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
                               {server_data.name}
-                            </Link> : <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                            </Link> : <Link key={server_data.filename} href={`?a=${i}&b=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
                               {server_data.name}
                             </Link>}
                         </div>
