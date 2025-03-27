@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   logging: false,
-  
+
   images: {
     qualities: [10],
     formats: ["image/webp"],
@@ -11,7 +11,9 @@ const nextConfig: NextConfig = {
       { hostname: "phimimg.com", protocol: 'https' }
     ]
 
-  }
+  },
+  devIndicators: { position: "top-left" },
+  reactStrictMode: false
 };
 
 export default nextConfig;

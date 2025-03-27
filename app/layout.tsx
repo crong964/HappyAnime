@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Foot } from "@/components/foot";
+import { NaviC } from "@/components/navi";
 
 
 
@@ -27,21 +28,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full block ">
+
       <head>
         <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
       </head>
       <body
-        className="bg-[#161D3A] relative h-full text-white"
+        className="bg-bg p-0 m-0  text-t h-full  overflow-hidden"
       >
-        <div className="sticky top-0 left-0 z-50">
-          <Header />
+
+        {/* <div className="h-full w-52 absolute bg-white z-[1000000] top-0 right-0"></div> */}
+        <div className="h-full relative overflow-y-auto">
+          <div className="h-max ">
+            <div className="sticky top-0 left-0 z-50 w-full">
+              <Header />
+            </div>
+            {children}
+            <Foot></Foot>
+          </div>
         </div>
-        {children}
-        <Foot></Foot>
+        <div className="bg-bg flex sm:hidden z-[1000000] fixed bottom-0 left-0 w-full">
+          <NaviC></NaviC>
+        </div>
       </body>
-      
     </html>
   );
 }

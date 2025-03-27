@@ -19,7 +19,7 @@ export async function generateMetadata(
   return {
     title: se0.titleHead,
     description: se0.descriptionHead,
-    
+
   }
 }
 
@@ -30,13 +30,12 @@ export default async function Home(req: {
 
   const data = await GetMovies({ currentPage: 0, totalItemsPerPage: 30 })
   return (
-    <div className="w-full text-white ">
+    <div className="w-full ">
       <div className="w-full ">
         <Banners ls={[...data.data.items] as unknown as iBannerE[]}>
 
         </Banners>
       </div>
-
       <div className="w-full">
         <div>
           Danh sách các phim
@@ -46,13 +45,6 @@ export default async function Home(req: {
         <div className="flex justify-center mt-5">
           <LinkC className="" href={'/ls?page=1'}><>Xem thêm</></LinkC>
         </div>
-      </div>
-
-
-
-
-      <div className="text-white">
-
       </div>
     </div >
   );

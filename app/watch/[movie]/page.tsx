@@ -24,7 +24,7 @@ export default async function WatchPage(req: {
   const category = await GetMoviesByCategory({ category: movie.category[0].slug, currentPage: 0, totalItemsPerPage: 14 })
 
   return (
-    <>
+    <div className=" h-full">
       {url == '' ?
         <Banner name={movie.name} thumb_url={movie.thumb_url} className="">
           <>
@@ -55,18 +55,26 @@ export default async function WatchPage(req: {
                   <div className=" flex flex-wrap ">
                     {episodes.server_data.map((server_data, j) => {
                       {
-                        return (episodesI === (i + "") && serverdataJ === (j + "")) ?
-                          <div className="w-1/3 h-auto lg:w-1/5 p-1">
+                        // return (episodesI === (i + "") && serverdataJ === (j + "")) ?
+                        //   <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
+                        //     <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
+                        //       {server_data.name}
+                        //     </Link>
+                        //   </div>
+                        //   :
+                        //   <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
+                        //     <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                        //       {server_data.name}
+                        //     </Link>
+                        //   </div>
+                        return <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
+                          {(episodesI === (i + "") && serverdataJ === (j + "")) ?
                             <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
                               {server_data.name}
-                            </Link>
-                          </div>
-                          :
-                          <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
-                            <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                            </Link> : <Link key={server_data.filename} href={`?episodesI=${i}&serverdataJ=${j}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
                               {server_data.name}
-                            </Link>
-                          </div>
+                            </Link>}
+                        </div>
 
                       }
                     })}
@@ -84,6 +92,6 @@ export default async function WatchPage(req: {
           <CardMovies ls={category.data.items} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
