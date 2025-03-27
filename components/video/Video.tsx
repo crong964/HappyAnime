@@ -142,7 +142,7 @@ export default function VideoC(p: iVideo) {
                                 if (vi) {
                                     vi.currentTime = vi.duration * (cur / d.clientWidth)
                                 }
-                            }} className="w-full h-2 bg-[#ffffff23] flex-1 relative ">
+                            }} className="w-full h-2 hover:h-5 cursor-pointer duration-200 bg-[#ffffff23] flex-1 relative ">
                                 <div className="absolute top-0 left-0 z-10" style={{ backgroundColor: "red", width: `${cur}%`, height: "100%" }}></div>
                                 <div className="absolute top-0 left-0 z-0 bg-[#ffffff23]" style={{ width: `${loadedTime}%`, height: "100%" }}></div>
                             </div>

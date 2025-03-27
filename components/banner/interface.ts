@@ -13,6 +13,7 @@ export interface iBannerE extends iBanner {
     children: JSX.Element
     origin_name: string;
     category: Category[];
+    slug: string;
 }
 export interface iBanners {
     ls: iBannerE[]

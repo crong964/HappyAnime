@@ -3,7 +3,38 @@
 
 @theme {
   --color-bg: #161D3A;
-  --color-t: #ffffff9a
+  --color-t: #ffffff9a;
+
+  --animate-appearighttoleft: appearighttoleft 0.5s ;
+  @keyframes appearighttoleft {
+    from {
+      transform: translate3d(20px, 0px, 0px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translate3d(0px, 0px, 0px);
+      opacity: 1;
+    }
+  }
+
+  --animate-appealefttoright: appealefttoright 0.5s ;
+
+  @keyframes appealefttoright {
+    from {
+      transform: translate3d(-20px, 0px, 0px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translate3d(0px, 0px, 0px);
+      opacity: 1;
+    }
+  }
+
+
+
+
 }
 
 body {

@@ -23,7 +23,7 @@ export default function SavePage() {
         const p = ls[key];
         if (p) {
             e.push(
-                <div className="relative w-1/3 lg:w-[calc(1/7*100%)] p-1 sm:p-3">
+                <div className="relative w-1/3 lg:w-[calc(1/7*100%)] p-1 sm:p-3 lg:hover:scale-110 duration-700">
                     <div className="absolute flex justify-between w-full z-20 top-0 right-0 p-1 sm:p-3">
                         <ButtomHeart {...p as any} />
                     </div>

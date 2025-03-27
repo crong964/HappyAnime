@@ -39,7 +39,7 @@ export default function RootLayout({
       >
 
         {/* <div className="h-full w-52 absolute bg-white z-[1000000] top-0 right-0"></div> */}
-        <div className="h-full relative overflow-y-auto">
+        <div className="h-full relative overflow-y-auto overflow-x-hidden">
           <div className="h-max ">
             <div className="sticky top-0 left-0 z-50 w-full">
               <Header />
