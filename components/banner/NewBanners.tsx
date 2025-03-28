@@ -1,9 +1,9 @@
 "use client"
-import { JSX, JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Banner } from ".";
 import { iBanners } from "./interface";
 import { GetImage } from "@/config";
-import { motion } from "framer-motion";
+
 import Link from "next/link";
 import { ButtomHeart } from "@/components/heart";
 
