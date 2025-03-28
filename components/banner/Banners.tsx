@@ -15,7 +15,7 @@ export default function Banners(p: iBanners) {
         const f = setTimeout(() => {
             SetS((s + 1) % p.ls.length)
         }
-            , 5000)
+            , 8000)
         return () => {
             clearTimeout(f)
         };
@@ -77,7 +77,7 @@ export default function Banners(p: iBanners) {
                                     
                                 </div>
                             </div>
-                            <div className="animate-appealefttoright w-1/2 sm:flex hidden items-center">
+                            <div  className=" animate-appealefttoright  w-1/2 sm:flex hidden items-center">
                                 {cur ?
                                     <div>
                                         <div className="font-bold text-white text-5xl">

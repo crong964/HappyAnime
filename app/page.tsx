@@ -1,6 +1,7 @@
 
 import { Banners } from "@/components/banner";
 import { iBannerE } from "@/components/banner/interface";
+import NewBanners from "@/components/banner/NewBanners";
 import { CardMovies } from "@/components/cardmovie";
 import { LinkC } from "@/components/Link";
 import { GetMovies } from "@/service";
@@ -17,7 +18,7 @@ export async function generateMetadata(
 
   const se0 = data.data.seoOnPage
   return {
-    title: se0.titleHead,
+    title: `Anime Vui-${se0.titleHead}`,
     description: se0.descriptionHead,
 
   }
@@ -31,13 +32,13 @@ export default async function Home(req: {
   const data = await GetMovies({ currentPage: 0, totalItemsPerPage: 30 })
   return (
     <div className="w-full ">
-      <div className="w-full ">
+      <div className="w-full my-3">
         <Banners ls={[...data.data.items] as unknown as iBannerE[]}>
 
         </Banners>
       </div>
-      <div className="w-full">
-        <div>
+      <div className="w-full my-10">
+        <div className="font-bold text-3xl">
           Danh sách các phim
         </div>
 

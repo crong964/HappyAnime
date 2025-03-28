@@ -3,8 +3,25 @@ import { CardMovies } from "@/components/cardmovie";
 import { VideoC } from "@/components/video";
 import { GetImage } from "@/config";
 import { GetMovie, GetMoviesByCategory } from "@/service";
+import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 
+export async function generateMetadata(
+  { params, searchParams }: {
+    params: Promise<{ movie: string }>,
+    searchParams: Promise<{ page: string }>
+  },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+
+  const slug = (await params).movie
+  const data = await GetMovie(slug)
+
+  return {
+    title: `Anime Vui-${data.title}`,
+    description: data.description,
+  }
+}
 
 export default async function WatchPage(req: {
   params: Promise<{ movie: string }>,
