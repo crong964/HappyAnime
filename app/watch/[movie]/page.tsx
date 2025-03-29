@@ -39,7 +39,7 @@ export default async function WatchPage(req: {
   }
   const movie = data.movie
 
-  const category = await GetMoviesByCategory({ category: movie.category[0].slug, currentPage: 0, totalItemsPerPage: 14 })
+  const category = await GetMoviesByCategory({ category: movie.category[0].slug, currentPage: 0, totalItemsPerPage: 12 })
 
   return (
     <div className=" h-full">
@@ -92,11 +92,9 @@ export default async function WatchPage(req: {
           </div>
         </div>
       </div >
-      <div className="flex justify-center">
-        <div className="w-full sm:w-[90%]">
-          <div className="font-bold my-9 text-3xl">Có thể cũng thích</div>
-          <CardMovies ls={category.data.items} />
-        </div>
+      <div className="w-full">
+        <div className="text-center font-bold my-9 text-3xl">Có thể cũng thích</div>
+        <CardMovies ls={category.data.items} />
       </div>
     </div>
   );

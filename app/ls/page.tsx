@@ -9,7 +9,7 @@ export default async function LsPage(req: {
     searchParams: Promise<{ page: string }>,
 }) {
     const page = parseInt((await req.searchParams).page || "1")
-    const data = await GetMovies({ currentPage: page, totalItemsPerPage: 28 })
+    const data = await GetMovies({ currentPage: page, totalItemsPerPage: 30 })
     const totalpage = data.data.params.pagination.totalPages
     let e = []
     if (page <= 5) {
