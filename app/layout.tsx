@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Foot } from "@/components/foot";
 import { NaviC } from "@/components/navi";
-import { HomeIcon } from "@/icon";
-import { Fashed } from "./t/dass";
-
-
 
 export const metadata: Metadata = {
   title: " Animevui - Hoạt Hình Hay Online",
