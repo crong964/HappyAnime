@@ -1,5 +1,5 @@
 "use client"
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Banner } from ".";
 import { iBanners } from "./interface";
 import { GetImage } from "@/config";
@@ -80,10 +80,17 @@ export default function Banners(p: iBanners) {
                 }).map((v, i) => {
                     let g = (s + i + 1) % p.ls.length
                     return (
-                        <div key={g} className="h-1/3 animate-rise hover:scale-110 duration-300 cursor-pointer" onClick={() => {
-                            SetS(g)
-                        }}>
-                            <img src={GetImage(p.ls[g].thumb_url)} className="h-full w-auto" alt="" />
+                        <div key={g}
+                            style={{ backgroundImage: `linear-gradient(to right,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)),url('${GetImage(p.ls[g].thumb_url)}')` }}
+                            className="
+                            text-[#ffffff00] hover:text-white
+                            h-1/3 flex items-center bg-cover animate-rise hover:scale-120 duration-300 cursor-pointer" onClick={() => {
+                                SetS(g)
+                            }}>
+                            <div className="p-2 text-lg">
+                                {v.name}
+                            </div>
+
                         </div>
                     )
                 })}

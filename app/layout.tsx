@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Foot } from "@/components/foot";
 import { NaviC } from "@/components/navi";
+import { HomeIcon } from "@/icon";
+import { Fashed } from "./t/dass";
 
 
 
@@ -35,7 +37,7 @@ export default function RootLayout({
         <meta property="og:image:type" content="image/webp" />
         <meta property="og:image:width" content="96" />
         <meta property="og:image:height" content="96" />
-        
+
       </head>
       <body
         className="bg-bg p-0 m-0  text-t h-full  overflow-hidden"
@@ -57,3 +59,20 @@ export default function RootLayout({
     </html>
   );
 }
+{/* <body
+        className="bg-bg p-0 m-0  text-t h-full  overflow-hidden"
+      >
+
+        <div className="h-full relative overflow-y-auto overflow-x-hidden">
+          <div className="h-max ">
+            <div className="sticky top-0 left-0 z-50 w-full">
+              <Header />
+            </div>
+            {children}
+            <Foot></Foot>
+          </div>
+        </div>
+        <div className="bg-bg py-2 flex justify-around sm:hidden z-[1000000] fixed bottom-0 left-0 w-full">
+          <NaviC></NaviC>
+        </div>
+      </body> */}

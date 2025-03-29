@@ -18,7 +18,7 @@ export async function generateMetadata(
   const data = await GetMovie(slug)
 
   return {
-    title: `Anime Vui-${data.title}`,
+    title: `Anime Vui-${data.movie.name}`,
     description: data.description,
   }
 }

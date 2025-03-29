@@ -13,8 +13,11 @@ export default function CardMovie(p: Item) {
                 <div className="bg-amber-600 text-black text-sm flex items-center p-1 rounded-sm">{p.episode_current.replace("Hoàn Tất", "")}</div>
                 <ButtomHeart {...p as any} />
             </div>
-            <Link href={`/watch/${p.slug}`} title={p.name} className=" h-max w-full hover:text-blue-500 ">
-                <img className="w-full h-auto opacity-90 rounded-xl" alt={p.name} width={300} height={100} src={GetImage(p.poster_url)}></img>
+            <Link href={`/watch/${p.slug}`} title={p.name} className=" w-full hover:text-blue-500 ">
+                <div className="sm:min-h-[90%]">
+                    <img className="w-full h-auto opacity-90 rounded-xl" alt={p.name} width={300} height={100} src={GetImage(p.poster_url)}></img>
+                </div>
+
                 <div className="line-clamp-2 md:line-clamp-1 max-sm:text-sm">{p.name}</div>
             </Link>
         </div>
