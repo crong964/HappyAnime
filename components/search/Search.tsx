@@ -1,23 +1,13 @@
-"use client"
 import { SearchIcon } from "@/icon";
-import { useState } from "react";
-import { LinkC } from "@/components/Link";
+
 
 export default function SearchC() {
-    const [keywword, SetKeyword] = useState("")
     return (
-        <div className="p-2 hover:text-[#F3D68D] rounded-md w-full" >
-            <div className=" border-2 border-white w-full flex">
-                <input onChange={(v) => {
-                    let t = v.currentTarget.value
-                    SetKeyword(t)
-                }} value={keywword} placeholder="Tìm phim yêu tích" type="text" className="px-1 flex-1 focus:outline-none" />
-                <LinkC href={`/search?keyword=${keywword}`} onClick={(e) => {
-                    SetKeyword("")
-                }} className="">
-                    <SearchIcon className={"cursor-pointer"}></SearchIcon>
-                </LinkC>
-            </div>
-        </div >
+        <form action={"/search"} className="hover:text-[#F3D68D] rounded-lg py-0.5 px-2 border-2 border-white w-full flex">
+            <input name="keyword" placeholder="Tìm phim yêu tích" type="text" className="px-1 flex-1 focus:outline-none" />
+            <button type="submit" className="">
+                <SearchIcon className={"cursor-pointer"}></SearchIcon>
+            </button>
+        </form>
     )
 }

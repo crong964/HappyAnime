@@ -1,5 +1,6 @@
 import { Banner } from "@/components/banner";
 import { CardMovies } from "@/components/cardmovie";
+import { ButtomHeart } from "@/components/heart";
 import { VideoC } from "@/components/video";
 import { GetImage } from "@/config";
 import { GetMovie, GetMoviesByCategory } from "@/service";
@@ -55,7 +56,13 @@ export default async function WatchPage(req: {
         <div className="w-full sm:w-[90%] flex sm:space-x-2.5">
           <div className="sm:block hidden sm:w-[300px]  rounded-2xl p-7">
             <img src={GetImage(movie.poster_url)} className="w-[180px] mx-2 mb-2 h-auto" alt="" srcSet="" />
-            <p className="text-lg">{movie.name}</p>
+
+          </div>
+          <div className="sm:mx-4 flex-1">
+            <div className="flex items-center space-x-4">
+              <p className="text-lg">{movie.name}</p>
+              <ButtomHeart {...movie as any} />
+            </div>
             <div className="flex flex-wrap gap-1">{movie.category.map((v) => {
               return (
                 <Link href={''} className="bg-black text-center rounded-3xl hover:bg-amber-400 p-1">
@@ -63,32 +70,32 @@ export default async function WatchPage(req: {
                 </Link>
               )
             })}</div>
-          </div>
-          <div className="sm:mx-4 flex-1 max-h-[500px] overflow-y-auto">
             <div className="font-bold text-2xl">Tập phim</div>
-            {data.episodes.map((episodes, i) => {
-              return (
-                <div className="">
-                  <div>{episodes.server_name}</div>
-                  <div className=" flex flex-wrap ">
-                    {episodes.server_data.map((server_data, j) => {
-                      {
-                        return <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
-                          {(episodesI === (i + 1 + "") && serverdataJ === (j + 1 + "")) ?
-                            <Link key={server_data.filename} href={`?a=${i + 1}&b=${j + 1}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
-                              {server_data.name}
-                            </Link> : <Link key={server_data.filename} href={`?a=${i + 1}&b=${j + 1}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
-                              {server_data.name}
-                            </Link>}
-                        </div>
+            <div className=" max-h-[500px] overflow-y-auto">
+              {data.episodes.map((episodes, i) => {
+                return (
+                  <div className="">
+                    <div>{episodes.server_name}</div>
+                    <div className=" flex flex-wrap ">
+                      {episodes.server_data.map((server_data, j) => {
+                        {
+                          return <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
+                            {(episodesI === (i + 1 + "") && serverdataJ === (j + 1 + "")) ?
+                              <Link key={server_data.filename} href={`?a=${i + 1}&b=${j + 1}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
+                                {server_data.name}
+                              </Link> : <Link key={server_data.filename} href={`?a=${i + 1}&b=${j + 1}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                                {server_data.name}
+                              </Link>}
+                          </div>
 
-                      }
-                    })}
+                        }
+                      })}
+                    </div>
                   </div>
-                </div>
-              )
+                )
 
-            })}
+              })}
+            </div>
           </div>
         </div>
       </div >
