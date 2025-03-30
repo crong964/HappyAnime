@@ -13,7 +13,7 @@ export default function Banners(p: iBanners) {
         const f = setTimeout(() => {
             SetS((s + 1) % p.ls.length)
         }
-            , 8000)
+            , 800000000)
         return () => {
             clearTimeout(f)
         };
@@ -23,54 +23,44 @@ export default function Banners(p: iBanners) {
 
 
     return (
-        <div className="h-[200px] sm:h-[500px] relative flex">
+        <div className="h-[200px] sm:h-[500px] relative flex space-x-6 px-4">
+            
             {p.ls.filter((v, i) => {
                 return i == s
             }).map((v) => {
                 return (
-                    <div className="flex-1 ">
-                        <Banner key={v.name} className=" flex" name="" thumb_url={v.thumb_url}>
-                            <>
-                                <div className=" w-1/2 sm:flex hidden items-end justify-start pb-16">
-                                    <div className=" w-[500px] space-x-1.5 relative">
+                    <Banner key={v.name} className="flex-1 p-3 bg-white flex" name="" thumb_url={v.thumb_url}>
+                        <>
+                            <div className=" w-1/2 sm:flex hidden items-end justify-start">
+                                <div className=" w-[500px] space-x-1.5 relative">
 
-                                    </div>
                                 </div>
-                                <div className=" animate-appealefttoright  w-1/2 sm:flex hidden items-center">
-                                    {cur ?
-                                        <div>
-                                            <div className="font-bold text-white text-5xl">
-                                                {cur.name}
-                                            </div>
-                                            <div className="text-base">
-                                                {cur.origin_name}
-                                            </div>
-                                            <div className="flex space-x-2">
-                                                {v.category.map((v) => {
-                                                    return <div className="bg-[#41383E] px-2 py-1 cursor-pointer" key={v.slug}>{v.name}</div>
-                                                })}
-                                            </div>
-                                            <div className="flex space-x-2 mt-3">
-                                                <Link href={"/watch/" + cur.slug} className="px-2 py-1 bg-white hover:bg-[#F3D588] text-black rounded-lg">
-                                                    Xem phim
-                                                </Link>
-                                                <ButtomHeart {...p as any} />
-                                            </div>
-                                        </div> :
-                                        <>
-                                        </>}
-                                </div>
-                            </>
-                        </Banner>
-                    </div>
-                )
-            })}
-            {p.ls.filter((v, i) => {
-                return i != s
-            }).map((v) => {
-                return (
-                    <Banner key={v.name} className="absolute top-0 -left-full" name="" thumb_url={v.thumb_url}>
-                        <></>
+                            </div>
+                            <div className=" animate-appealefttoright  w-1/2 sm:flex hidden items-center">
+                                {cur ?
+                                    <div>
+                                        <div className="font-bold text-white text-5xl">
+                                            {cur.name}
+                                        </div>
+                                        <div className="text-base">
+                                            {cur.origin_name}
+                                        </div>
+                                        <div className="flex space-x-2">
+                                            {v.category.map((v) => {
+                                                return <div className="bg-[#41383E] px-2 py-1 cursor-pointer" key={v.slug}>{v.name}</div>
+                                            })}
+                                        </div>
+                                        <div className="flex space-x-2 mt-3">
+                                            <Link href={"/watch/" + cur.slug} className="px-2 py-1 bg-white hover:bg-[#F3D588] text-black rounded-lg">
+                                                Xem phim
+                                            </Link>
+                                            <ButtomHeart {...p as any} />
+                                        </div>
+                                    </div> :
+                                    <>
+                                    </>}
+                            </div>
+                        </>
                     </Banner>
                 )
             })}
@@ -79,18 +69,13 @@ export default function Banners(p: iBanners) {
                     return i < 3
                 }).map((v, i) => {
                     let g = (s + i + 1) % p.ls.length
+                    let c = p.ls[g]
                     return (
-                        <div key={g}
-                            style={{ backgroundImage: `linear-gradient(to right,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)),url('${GetImage(p.ls[g].thumb_url)}')` }}
-                            className="
-                            text-[#ffffff00] hover:text-white
-                            h-1/3 flex items-center bg-cover animate-rise hover:scale-120 duration-300 cursor-pointer" onClick={() => {
-                                SetS(g)
-                            }}>
-                            <div className="p-2 text-lg">
-                                {v.name}
-                            </div>
-
+                        <div key={g} onClick={() => {
+                            SetS(g)
+                        }} title={c.name} className="h-1/3 animate-rise hover:scale-120 duration-400 cursor-pointer">
+                            <img title={c.name} src={GetImage(c.thumb_url)} alt="" className="h-full w-auto" />
+                           
                         </div>
                     )
                 })}

@@ -38,7 +38,7 @@ export default async function Home(req: {
         </Banners>
       </div>
       <div className="w-full my-10">
-        <div className="font-bold text-3xl">
+        <div className="font-bold text-center text-3xl">
           Danh sách các phim
         </div>
 
