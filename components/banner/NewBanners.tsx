@@ -23,7 +23,7 @@ export default function Banners(p: iBanners) {
 
 
     return (
-        <div className="h-[200px] sm:h-[500px] relative flex space-x-6 px-4">
+        <div className="h-[200px] sm:h-[500px] relative flex space-x-0 sm:space-x-6 px-0 sm:px-4">
             
             {p.ls.filter((v, i) => {
                 return i == s

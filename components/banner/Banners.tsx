@@ -77,7 +77,7 @@ export default function Banners(p: iBanners) {
                                     
                                 </div>
                             </div>
-                            <div  className=" animate-appealefttoright  w-1/2 sm:flex hidden items-center">
+                            <div  className=" animate-appealefttoright hidden  w-1/2 sm:flex  items-center">
                                 {cur ?
                                     <div>
                                         <div className="font-bold text-white text-5xl">
