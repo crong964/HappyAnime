@@ -43,6 +43,24 @@ export default function VideoC(p: iVideo) {
         SetTypeDevice("p")
     }
     useEffect(() => {
+        const historys = JSON.parse(localStorage.getItem("his") || "{}") as {
+            [key: string]: iVideo | undefined
+        }
+        let tem = historys[p.slug]
+        if (tem) {
+            tem.url = p.url
+            tem.time = Date.now() + ""
+        } else {
+            tem = {
+                link_m3u8: p.link_m3u8,
+                nameMovie: p.nameMovie, poster_url: p.poster_url, slug: p.slug, thumb_url: p.thumb_url
+                , time: "", url: p.url
+            }
+            tem.time = Date.now() + ""
+        }
+
+        historys[p.slug] = tem
+        localStorage.setItem("his", JSON.stringify(historys))
 
         const f = async () => {
             var video = document.getElementById('video') as HTMLVideoElement;

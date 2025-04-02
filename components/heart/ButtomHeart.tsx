@@ -12,7 +12,6 @@ export default function ButtomHeart(params: iButtomC) {
     }, [params])
     return <button onClick={() => {
         const ls = JSON.parse(localStorage.getItem("ls") || "{}")
-
         if (ls[params.slug]) {
             ls[params.slug] = undefined
             SetStore(false)
@@ -24,10 +23,10 @@ export default function ButtomHeart(params: iButtomC) {
                 slug: params.slug
             }
             SetStore(true)
-            
+
         }
         localStorage.setItem("ls", JSON.stringify(ls))
     }} {...params} className="cursor-pointer">
-        {!store ? <HeartIcon className="text-white" /> : <HeartIcon className="text-pink-700" />}
+        {!store ? <HeartIcon className="text-white hover:text-pink-700" /> : <HeartIcon className="text-pink-700" />}
     </button>
 }

@@ -1,5 +1,6 @@
 
 import { SearchC } from "@/components/search";
+import { WatchedIcon } from "@/icon";
 import { LinkC } from "components/Link";
 import Link from "next/link";
 
@@ -16,6 +17,9 @@ export default function Header() {
 
                 <LinkC href={'/save'} className="hidden sm:block">
                     <i className="text-2xl bi bi-film text-center"></i>
+                </LinkC>
+                <LinkC href={'/history'} className="hidden sm:block">
+                    <WatchedIcon className="text-2xl bi bi-film text-center"/>
                 </LinkC>
             </div>
         </div>

@@ -1,5 +1,4 @@
-export interface iVideo {
-    link_m3u8: string
+export interface iHistory {
     nameMovie: string
     poster_url: string
     slug: string

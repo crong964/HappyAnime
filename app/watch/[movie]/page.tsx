@@ -33,10 +33,9 @@ export default async function WatchPage(req: {
   const data = await GetMovie(slug)
   let episodesI = (await req.searchParams).a
   let serverdataJ = (await req.searchParams).b
-  let url = ''
+  let urllink_m3u8 = ''
   if (episodesI != undefined && serverdataJ != undefined) {
-
-    url = data.episodes[parseInt(episodesI) - 1].server_data[parseInt(serverdataJ) - 1].link_m3u8
+    urllink_m3u8 = data.episodes[parseInt(episodesI) - 1].server_data[parseInt(serverdataJ) - 1].link_m3u8
   }
   const movie = data.movie
 
@@ -44,13 +43,15 @@ export default async function WatchPage(req: {
 
   return (
     <div className=" h-full">
-      {url == '' ?
+      {urllink_m3u8 == '' ?
         <Banner name={movie.name} thumb_url={movie.thumb_url} className="">
           <>
 
           </>
         </Banner> :
-        <VideoC link_m3u8={url} nameMovie={movie.name}></VideoC>}
+        <VideoC link_m3u8={urllink_m3u8}
+          url={`/watch/${movie.slug}?a=${episodesI}&b=${serverdataJ}`}
+          nameMovie={movie.name} {...movie} />}
 
       <div className="flex justify-center text-white translate-y-4">
         <div className="w-full sm:w-[90%] flex sm:space-x-2.5">
@@ -81,9 +82,9 @@ export default async function WatchPage(req: {
                         {
                           return <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
                             {(episodesI === (i + 1 + "") && serverdataJ === (j + 1 + "")) ?
-                              <Link key={server_data.filename} href={`?a=${i + 1}&b=${j + 1}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
+                              <Link key={server_data.filename} href={`/watch/${movie.slug}?a=${i + 1}&b=${j + 1}?a=${i + 1}&b=${j + 1}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
                                 {server_data.name}
-                              </Link> : <Link key={server_data.filename} href={`?a=${i + 1}&b=${j + 1}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                              </Link> : <Link key={server_data.filename} href={`/watch/${movie.slug}?a=${i + 1}&b=${j + 1}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
                                 {server_data.name}
                               </Link>}
                           </div>

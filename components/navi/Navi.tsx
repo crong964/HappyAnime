@@ -1,5 +1,4 @@
-import { FilmIcon, HomeIcon, SearchIcon } from "@/icon";
-import Link from "next/link";
+import { FilmIcon, HomeIcon, SearchIcon, WatchedIcon } from "@/icon";
 import { LinkC } from "@/components/Link";
 
 export default function Navi() {
@@ -8,19 +7,25 @@ export default function Navi() {
             <LinkC className="flex flex-col items-center" href={'/'}>
                 <>
                     <HomeIcon className=""></HomeIcon>
-                    <p className="text-sm">Home</p>
+                    <p className="text-sm">Trang chủ</p>
                 </>
             </LinkC>
             <LinkC className="flex flex-col items-center" href={'/save'}>
                 <>
                     <FilmIcon className=""></FilmIcon>
-                    <p className="text-sm">Save</p>
+                    <p className="text-sm">Lưu</p>
                 </>
             </LinkC>
             <LinkC className="flex flex-col  items-center" href={'/searchmobile'}>
                 <>
                     <SearchIcon className=""></SearchIcon>
-                    <p className="text-sm">Search</p>
+                    <p className="text-sm">Tìm kiếm</p>
+                </>
+            </LinkC>
+            <LinkC className="flex flex-col  items-center" href={'/history'}>
+                <>
+                    <WatchedIcon className=""></WatchedIcon>
+                    <p className="text-sm">Xem lại</p>
                 </>
             </LinkC>
         </>
