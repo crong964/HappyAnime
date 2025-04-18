@@ -13,7 +13,7 @@ export default function MainSmalBlog(p: { ls: iBlog[] }) {
                 .map((v) => {
                     return (
                         <Link key={v.id} href={`/blog/${v.id}`} className="h-full hover:scale-105 duration-700 cursor-pointer hover:text-blue-400 flex space-x-4 p-2">
-                            <ImgC src={`${v.imageurl}`} className="h-auto lg:h-40 w-50 lg:min-w-80 object-cover rounded-2xl" alt="" />
+                            <ImgC src={`${v.imageurl}`} className="h-25 lg:h-40 min-w-50 lg:min-w-80 object-cover rounded-2xl" alt="" />
                             <div className="h-20 lg:h-40 flex flex-col justify-around">
                                 <div className="line-clamp-2 lg:line-clamp-4  text-base">{v.title}</div>
                                 <div className="text-sm">{ConvertSecondToDate(parseInt(v.time))}

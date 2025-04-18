@@ -13,9 +13,9 @@ export default function OtherBlog(p: { ls: iBlog[] }) {
                     .map((v) => {
                         return (
                             <Link key={v.id} href={`/blog/${v.id}`}
-                                className="rounded-lg cursor-pointer w-full lg:w-1/3  p-2 hover:text-blue-400">
+                                className="rounded-lg cursor-pointer w-full lg:w-1/3 p-0 lg:p-2 hover:text-blue-400">
                                 <div className="w-full flex lg:block rounded-2xl p-2 hover:scale-105 duration-700">
-                                    <ImgC src={`${v.imageurl}`} className="w-1/3 h-[100px] lg:w-full lg:h-[250px] rounded-2xl object-cover" alt="" />
+                                    <ImgC src={`${v.imageurl}`} className=" min-w-50 h-25 lg:w-full lg:h-[250px] rounded-2xl object-cover" alt="" />
                                     <div className="px-2">
                                         <div className="text-xs p-2">{ConvertSecondToDate(parseInt(v.time))}
                                         </div>
