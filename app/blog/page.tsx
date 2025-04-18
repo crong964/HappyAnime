@@ -6,6 +6,7 @@ import Link from "next/link"
 export default async function BlogPage() {
     const ls = (await GetApi(`${domain || ""}/api/blog`))?.ls
     
+    console.log(ls);
     
     if (ls == undefined) {
         return <div> Không có bài vi</div>
