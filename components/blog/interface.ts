@@ -1,0 +1,1 @@
+export interface iBlog { time: string, id: string, description: string, imageurl: string, title: string }
