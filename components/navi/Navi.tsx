@@ -1,4 +1,4 @@
-import { FilmIcon, HomeIcon, SearchIcon, WatchedIcon } from "@/icon";
+import { BookIcon, FilmIcon, HomeIcon, SearchIcon, WatchedIcon } from "@/icon";
 import { LinkC } from "@/components/Link";
 
 export default function Navi() {
@@ -26,6 +26,12 @@ export default function Navi() {
                 <>
                     <WatchedIcon className=""></WatchedIcon>
                     <p className="text-sm">Xem lại</p>
+                </>
+            </LinkC>
+            <LinkC className="flex flex-col  items-center" href={'/blog'}>
+                <>
+                    <BookIcon className="size-6 fill-white text-center"></BookIcon>
+                    <p className="text-sm">Bài viết</p>
                 </>
             </LinkC>
         </>
