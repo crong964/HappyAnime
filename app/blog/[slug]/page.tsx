@@ -45,8 +45,10 @@ export default async function IdBlogPage({ params, }: Props) {
                 </div>
             </div>
             <div className="flex justify-center">
-                <div className="h-max w-[80%]">
-                    <ShowContentC content={blog.content.replaceAll('<img src="', '<img src="https://funnytoeic.vercel.app')}></ShowContentC>
+                {<div className="hidden" dangerouslySetInnerHTML={{ __html: blog.content?.replaceAll("&nbsp;", ' ')?.replaceAll("</p><p>", "<br />") }}>
+                </div>}
+                <div className="h-max w-full px-2 lg:px-0 lg:w-[80%]">
+                    <ShowContentC content={blog.content?.replaceAll('<img src="', '<img src="https://funnytoeic.vercel.app')}></ShowContentC>
                 </div>
             </div>
 
