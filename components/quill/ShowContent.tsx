@@ -23,7 +23,10 @@ export default function ShowContent(p: { content: string }) {
 
         };
     }, [p]);
-    return <div id="editor">
+    return <>
+        <div className="hidden" dangerouslySetInnerHTML={{ __html: p.content.replaceAll("&nbsp;", ' ') }}>
+        </div><div id="editor">
 
-    </div>
+        </div>
+    </>
 }

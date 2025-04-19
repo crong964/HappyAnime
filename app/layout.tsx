@@ -32,7 +32,14 @@ export default function RootLayout({
         <meta property="og:image:type" content="image/webp" />
         <meta property="og:image:width" content="96" />
         <meta property="og:image:height" content="96" />
-
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z795ND0WS"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: ` window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2Z795ND0WS');`}}    >
+        </script>
       </head>
       <body
         className="bg-bg p-0 m-0  text-t h-full  overflow-hidden"

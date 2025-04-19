@@ -1,10 +1,11 @@
 import { MainBlog, MainSmalBlog, OtherBlog } from "@/components/blog"
 import { GetApi } from "@/config"
-import { domain } from "@/config/GetEnv"
-import Link from "next/link"
+import { domain, revalidate } from "@/config/GetEnv"
+
 
 export default async function BlogPage() {
-    const ls = (await GetApi(`${domain || ""}/api/blog`, 3600 * 8))?.ls
+     
+    const ls = (await GetApi(`${domain || ""}/api/blog`, revalidate))?.ls
 
     if (ls == undefined) {
         return <div> Không có bài vi</div>

@@ -3,7 +3,7 @@ import { RefBlog } from "@/components/blog"
 import { ImgC } from "@/components/Common/image"
 import { ShowContentC } from "@/components/quill"
 import { GetApi } from "@/config"
-import { domain } from "@/config/GetEnv"
+import { domain, pathimage } from "@/config/GetEnv"
 import Link from "next/link"
 import { Metadata } from "next/types"
 interface Props {
@@ -45,15 +45,14 @@ export default async function IdBlogPage({ params, }: Props) {
                 </div>
             </div>
             <div className="flex justify-center">
-                {<div className="hidden" dangerouslySetInnerHTML={{ __html: blog.content?.replaceAll("&nbsp;", ' ')?.replaceAll("</p><p>", "<br />") }}>
-                </div>}
+                
                 <div className="h-max w-full px-2 lg:px-0 lg:w-[80%]">
-                    <ShowContentC content={blog.content?.replaceAll('<img src="', '<img src="https://funnytoeic.vercel.app')}></ShowContentC>
+                    <ShowContentC content={blog.content.replaceAll('<img src="', `<img src="${pathimage}`)}></ShowContentC>
                 </div>
             </div>
 
             <div className="flex justify-center ">
-                <div className="w-[80%]  ">
+                <div className="w-full lg:w-[80%]  ">
                     <div className="text-5xl font-bold my-14 border-t-2 border-white p-2">
                         Bài viết khác
                     </div>
