@@ -4,7 +4,7 @@ import { domain } from "@/config/GetEnv"
 import Link from "next/link"
 
 export default async function BlogPage() {
-    const ls = (await GetApi(`${domain || ""}/api/blog`))?.ls
+    const ls = (await GetApi(`${domain || ""}/api/blog`, 3600 * 8))?.ls
 
     if (ls == undefined) {
         return <div> Không có bài vi</div>
