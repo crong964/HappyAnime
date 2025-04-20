@@ -2,6 +2,7 @@ import blogService from "@/backend/service/BlogService"
 import { RefBlog } from "@/components/blog"
 import { ImgC } from "@/components/Common/image"
 import { ShowContentC } from "@/components/quill"
+
 import { GetApi } from "@/config"
 import { domain, pathimage } from "@/config/GetEnv"
 import Link from "next/link"
@@ -23,7 +24,6 @@ export async function generateMetadata(p: Props): Promise<Metadata> {
     }
     return {}
 }
-
 export default async function IdBlogPage({ params, }: Props) {
     const id = (await params).slug
     const blog = (await GetApi(`${domain || ""}/api/blog/${id}`)).d
@@ -38,6 +38,7 @@ export default async function IdBlogPage({ params, }: Props) {
     const otherblog = await blogService.GetOtherBlog(blog)
     return (
         <>
+            
             <div className="relative mt-4 mb-8">
                 <ImgC src={blog.imageurl} alt={id} className="opacity-65 h-100 lg:h-140 object-cover w-full" />
                 <div className="absolute bottom-0 font-bold text-5xl text-white p-2">
@@ -45,7 +46,7 @@ export default async function IdBlogPage({ params, }: Props) {
                 </div>
             </div>
             <div className="flex justify-center">
-                
+
                 <div className="h-max w-full px-2 lg:px-0 lg:w-[80%]">
                     <ShowContentC content={blog.content.replaceAll('<img src="', `<img src="${pathimage}`)}></ShowContentC>
                 </div>
