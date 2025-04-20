@@ -31,7 +31,7 @@ export default function RootLayout({
           content="cQFNw_W7NueSO_re4v6NYult8Y_zdLLKz5457qvRIqQ"
         />
         <meta charSet="UTF-8" />
-
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
         <meta property="og:image:alt" content="Anime vui" />
         <meta property="og:image:type" content="image/webp" />
         <meta property="og:image:width" content="96" />
