@@ -1,10 +1,11 @@
 import { MainBlog, MainSmalBlog, OtherBlog } from "@/components/blog"
+
 import { GetApi } from "@/config"
 import { domain, revalidate } from "@/config/GetEnv"
 
 
 export default async function BlogPage() {
-     
+
     const ls = (await GetApi(`${domain || ""}/api/blog`, revalidate))?.ls
 
     if (ls == undefined) {
