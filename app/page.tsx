@@ -4,6 +4,7 @@ import { iBannerE } from "@/components/banner/interface";
 import NewBanners from "@/components/banner/NewBanners";
 import { CardMovies } from "@/components/cardmovie";
 import { LinkC } from "@/components/Link";
+import { domain } from "@/config/GetEnv";
 import { GetMovies } from "@/service";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -16,11 +17,24 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const data = await GetMovies({ currentPage: 0, totalItemsPerPage: 1 })
 
-  const se0 = data.data.seoOnPage
+  const se0 = data.data?.seoOnPage
+  if (se0) {
+    return {
+      title: `Anime Vui-${se0.titleHead}`,
+      description: se0.descriptionHead,
+      keywords: ["animevui", "anime", "mới nhất"],
+      alternates: {
+        canonical: `${domain}`
+      }
+    }
+  }
   return {
-    title: `Anime Vui-${se0.titleHead}`,
-    description: se0.descriptionHead,
-
+    title: `Anime Vui`,
+    description: "",
+    keywords: ["animevui", "anime", "mới nhất"],
+    alternates: {
+      canonical: `${domain}`
+    }
   }
 }
 

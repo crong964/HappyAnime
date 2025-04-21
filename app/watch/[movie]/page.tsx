@@ -3,8 +3,10 @@ import { CardMovies } from "@/components/cardmovie";
 import { ButtomHeart } from "@/components/heart";
 import { VideoC } from "@/components/video";
 import { GetImage } from "@/config";
+import { domain } from "@/config/GetEnv";
 import { GetMovie, GetMovies, GetMoviesByCategory } from "@/service";
 import { Metadata, ResolvingMetadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 export async function generateMetadata(
@@ -15,12 +17,24 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
 
+  
+  
+    
   const slug = (await params).movie
   const data = await GetMovie(slug)
-
+  const movie = data?.movie
+  if (movie) {
+    return {
+      title: `Anime Vui - ${movie.name}`,
+      description: movie.content,
+      keywords: ["animevui", "anime", movie.name],
+      alternates: {
+        canonical: `${domain}/watch/${movie.slug}`
+      }
+    }
+  }
   return {
-    title: `Anime Vui-${data.movie.name}`,
-    description: data.description,
+
   }
 }
 
@@ -38,13 +52,20 @@ export default async function WatchPage(req: {
     urllink_m3u8 = data.episodes[parseInt(episodesI) - 1].server_data[parseInt(serverdataJ) - 1].link_m3u8
   }
   const movie = data.movie
-
+  if (!movie) {
+    return (
+      <div className="flex justify-center h-100 items-center text-5xl font-bold">
+        Không có phim này
+      </div>
+    )
+  }
 
   const category = await GetMoviesByCategory({ category: movie.category[0].slug, currentPage: 0, totalItemsPerPage: 12 })
   let ls
   if (!category.status) {
     ls = await GetMovies({ currentPage: 0, totalItemsPerPage: 12 })
   }
+
 
 
   return (

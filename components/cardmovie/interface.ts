@@ -17,6 +17,7 @@ export interface Item {
     year: number;
     category: Category[];
     country: Country[];
+    content: string
 }
 
 export interface iCardMovies {
