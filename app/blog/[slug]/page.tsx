@@ -4,7 +4,7 @@ import { ImgC } from "@/components/Common/image"
 import { ShowContentC } from "@/components/quill"
 
 import { GetApi } from "@/config"
-import { domain, pathimage } from "@/config/GetEnv"
+import { domain, pathimage, revalidate } from "@/config/GetEnv"
 import Link from "next/link"
 import { Metadata } from "next/types"
 interface Props {
@@ -35,13 +35,16 @@ export default async function IdBlogPage({ params, }: Props) {
             </Link>
         )
     }
-    const otherblog = await blogService.GetOtherBlog(blog)
+    let otherblog = await blogService.GetOtherBlog(blog)
+    if (otherblog.length <= 0) {
+        otherblog = (await GetApi(`${domain || ""}/api/blog`, revalidate))?.ls
+    }
     return (
         <>
-            
+
             <div className="relative mt-4 mb-8">
-                <ImgC src={blog.imageurl} alt={id} className="opacity-65 h-100 lg:h-140 object-cover w-full" />
-                <div className="absolute bottom-0 font-bold text-5xl text-white p-2">
+                <ImgC src={blog.imageurl} alt={id} className="opacity-65 h-70 lg:h-140 object-center lg:object-cover w-full" />
+                <div className="absolute bottom-0 font-bold text-2xl lg:text-5xl text-white p-2">
                     {blog.title}
                 </div>
             </div>
