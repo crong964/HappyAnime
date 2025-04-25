@@ -12,24 +12,29 @@ import Link from "next/link";
 export async function generateMetadata(
   { params, searchParams }: {
     params: Promise<{ movie: string }>,
-    searchParams: Promise<{ page: string }>
+    searchParams: Promise<{ a: string, b: string }>
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
 
-  
-  
-    
+  let episodesI = (await searchParams).a
+  let serverdataJ = (await searchParams).b
+
+
   const slug = (await params).movie
   const data = await GetMovie(slug)
   const movie = data?.movie
   if (movie) {
+    let canonical = `${domain}/watch/${movie.slug}`
+    if (episodesI != undefined && serverdataJ != undefined) {
+      canonical += `?a=${episodesI}&b=${serverdataJ}`
+    }
     return {
       title: `Anime Vui - ${movie.name}`,
-      description: movie.content,
+      description: movie.content.slice(0, 155),
       keywords: ["animevui", "anime", movie.name],
       alternates: {
-        canonical: `${domain}/watch/${movie.slug}`
+        canonical: canonical
       }
     }
   }

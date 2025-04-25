@@ -18,9 +18,49 @@ export default function VideoC(p: iVideo) {
     const [isMouseMove, SetIsMouseMove] = useState(false)
     const [t, SetT] = useState(0)
     const [typeDevice, SetTypeDevice] = useState("")
+    const f = async () => {
+        var video = document.getElementById('video') as HTMLVideoElement;
+
+        if (video == undefined) {
+            return
+        }
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(p.link_m3u8);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function (e) {
+                video.play()
+                    .then(() => {
+                        SetIsPlay(true)
+                    })
+                    .catch(() => {
+                        SetIsPlay(false)
+                    })
+                video.ontimeupdate = (e) => {
+                    SetCur((video.currentTime / video.duration) * 100)
+                    SetCurrentTime(video.currentTime)
+                    SetDuration(video.duration)
+                }
+
+
+            });
+            hls.on(Hls.Events.FRAG_LOADED, (e) => {
+                SetLoadTime(((hls.mainForwardBufferInfo?.end || 0) / video.duration) * 100)
+
+            })
+
+        }
+        // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+        // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+        // This is using the built-in support of the plain video element, without using hls.js.
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = p.link_m3u8;
+
+        }
+    }
     const ev = (e: KeyboardEvent) => {
         if (videoref.current) {
-            SetIsMouseMove(true)
             switch (e.key) {
                 case 'ArrowRight':
                     videoref.current.currentTime += 5
@@ -62,47 +102,7 @@ export default function VideoC(p: iVideo) {
         historys[p.slug] = tem
         localStorage.setItem("his", JSON.stringify(historys))
 
-        const f = async () => {
-            var video = document.getElementById('video') as HTMLVideoElement;
 
-            if (video == undefined) {
-                return
-            }
-
-            if (Hls.isSupported()) {
-                var hls = new Hls();
-                hls.loadSource(p.link_m3u8);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function (e) {
-                    video.play()
-                        .then(() => {
-                            SetIsPlay(true)
-                        })
-                        .catch(() => {
-                            SetIsPlay(false)
-                        })
-                    video.ontimeupdate = (e) => {
-                        SetCur((video.currentTime / video.duration) * 100)
-                        SetCurrentTime(video.currentTime)
-                        SetDuration(video.duration)
-                    }
-
-
-                });
-                hls.on(Hls.Events.FRAG_LOADED, (e) => {
-                    SetLoadTime(((hls.mainForwardBufferInfo?.end || 0) / video.duration) * 100)
-
-                })
-
-            }
-            // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-            // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-            // This is using the built-in support of the plain video element, without using hls.js.
-            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = p.link_m3u8;
-
-            }
-        }
         f()
         window.addEventListener("keydown", ev, true)
         window.addEventListener("resize", rs, true)
@@ -160,9 +160,9 @@ export default function VideoC(p: iVideo) {
                                 if (vi) {
                                     vi.currentTime = vi.duration * (cur / d.clientWidth)
                                 }
-                            }} className="w-full h-2 hover:h-5 cursor-pointer duration-200 bg-[#ffffff23] flex-1 relative ">
-                                <div className="absolute top-0 left-0 z-10" style={{ backgroundColor: "red", width: `${cur}%`, height: "100%" }}></div>
-                                <div className="absolute top-0 left-0 z-0 bg-[#ffffff23]" style={{ width: `${loadedTime}%`, height: "100%" }}></div>
+                            }} className="w-full h-2 hover:h-5 cursor-pointer duration-500 bg-[#ffffff23] flex-1 relative ">
+                                <div className="absolute top-0  z-10" style={{ backgroundColor: "red", width: `${cur}%`, height: "100%" }}></div>
+                                <div className="absolute top-0 z-0 bg-[#ffffff23]" style={{ width: `${loadedTime}%`, height: "100%" }}></div>
                             </div>
                             <div className="flex justify-between items-center">
                                 <div className="flex">
@@ -194,7 +194,7 @@ export default function VideoC(p: iVideo) {
                                             vi.requestPictureInPicture();
                                         }
                                     }}>
-                                        <PipIcon className="" />
+                                        <PipIcon className="hover:scale-150 duration-700 cursor-pointer" />
                                     </button>
                                     <button onClick={() => {
                                         let r = document.getElementById("f")
@@ -209,8 +209,8 @@ export default function VideoC(p: iVideo) {
                                         }
                                     }}>
                                         {isFullscreen ?
-                                            <ExitFullscreenIcon className="" /> :
-                                            <FullscreenIcon className="" />}
+                                            <ExitFullscreenIcon className="hover:scale-150 duration-700 size-5 cursor-pointer" /> :
+                                            <FullscreenIcon className="hover:scale-150 duration-700 size-5 cursor-pointer" />}
                                     </button>
                                 </div>
                             </div>
