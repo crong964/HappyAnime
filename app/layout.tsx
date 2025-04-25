@@ -46,7 +46,7 @@ export default function RootLayout({
         </script>
       </head>
       <body
-        className="bg-bg p-0 m-0  text-t "
+        className="bg-bg p-0 m-0 overflow-x-hidden text-t "
       >
 
 

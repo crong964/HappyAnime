@@ -13,7 +13,7 @@ export default function Banners(p: iBanners) {
         const f = setTimeout(() => {
             SetS((s + 1) % p.ls.length)
         }
-            , 800000000)
+            , 4000)
         return () => {
             clearTimeout(f)
         };

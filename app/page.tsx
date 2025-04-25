@@ -47,9 +47,8 @@ export default async function Home(req: {
   return (
     <div className="w-full ">
       <div className="w-full my-3">
-        <Banners ls={[...data.data.items] as unknown as iBannerE[]}>
+        <Banners ls={[...data.data.items] as unknown as iBannerE[]} />
 
-        </Banners>
       </div>
       <div className="w-full my-10">
         <div className="font-bold text-center text-3xl">

@@ -19,7 +19,10 @@ export async function generateMetadata(p: Props): Promise<Metadata> {
             authors: { name: "Anime Vui" },
             title: blog.title,
             category: "entertainment",
-            description: blog.description
+            description: (blog.description as string).slice(0, 155),
+            alternates: {
+                canonical: `${domain}/blog/${id}`
+            }
         }
     }
     return {}
