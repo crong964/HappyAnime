@@ -1,16 +1,33 @@
+import { Banners } from "@/components/banner"
+import { iBannerE } from "@/components/banner/interface"
 import { CardMovie, CardMovies } from "@/components/cardmovie"
 import { LinkC } from "@/components/Link"
+import { domain, title } from "@/config/GetEnv"
 
 import { GetMovies } from "@/service"
+import { Metadata, ResolvingMetadata } from "next"
 
-
+export async function generateMetadata(
+    { searchParams }: {
+        searchParams: Promise<{ page: string }>
+    },
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const page = parseInt((await searchParams).page || "1")
+    return {
+        alternates: {
+            canonical: `${domain}/ls?page=${page}`
+        }
+    }
+}
 
 export default async function LsPage(req: {
     searchParams: Promise<{ page: string }>,
 }) {
     const page = parseInt((await req.searchParams).page || "1")
     const data = await GetMovies({ currentPage: page, totalItemsPerPage: 30 })
-    const totalpage = data.data.params.pagination.totalPages
+    const totalpage = data?.data?.params.pagination?.totalPages
+    const itemm = data?.data?.items
     let e = []
     if (page <= 5) {
         for (let i = 1; i < page + 14; i++) {
@@ -32,12 +49,14 @@ export default async function LsPage(req: {
 
     return (
         <>
-
+            <div className="w-full my-3">
+                <Banners ls={[...itemm] as unknown as iBannerE[]} />
+            </div>
             <div className="w-full">
-                <div className="my-6 font-bold text-2xl">
+                <div className="my-6 font-bold text-2xl text-center">
                     Danh sách các phim
                 </div>
-                <CardMovies ls={data.data.items} />
+                <CardMovies ls={itemm} />
             </div>
             <div className="flex justify-center mt-5  ">
                 <div className="mt-5 w-[70%] overflow-x-auto">
