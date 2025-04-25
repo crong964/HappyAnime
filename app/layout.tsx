@@ -3,15 +3,13 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Foot } from "@/components/foot";
 import { NaviC } from "@/components/navi";
+import { des, kw, title } from "@/config/GetEnv";
 ;
 
 export const metadata: Metadata = {
-  title: " Animevui - Hoạt Hình Hay Online",
-  description: "Web xem phim anime online tiếng việt, phim anime vietsub, tổng hợp phim hoạt hình nhật bản mới nhất & hay,  hoạt hình 3D",
-  keywords: ["anime", "phim mới", "Animevui"],
-  other: {
-
-  }
+  title: title,
+  description: des,
+  keywords: kw,
 };
 
 export default function RootLayout({
