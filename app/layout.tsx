@@ -44,7 +44,7 @@ export default function RootLayout({
         </script>
       </head>
       <body
-        className="bg-bg p-0 m-0 overflow-x-hidden text-t "
+        className="bg-bg p-0 m-0 overflow-x-hidden text-t"
       >
 
 
@@ -54,7 +54,7 @@ export default function RootLayout({
         {children}
         <Foot></Foot>
 
-        <div className="bg-bg py-2 flex justify-around sm:hidden z-[1000000] fixed bottom-0 left-0 w-full">
+        <div className="bg-bg py-2 flex justify-around h-max sm:hidden z-[1000000] fixed bottom-0  w-full">
           <NaviC></NaviC>
         </div>
 
