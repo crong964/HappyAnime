@@ -2,5 +2,10 @@ import { Icon } from "./interface";
 
 
 export default function Pause(i: Icon) {
-    return <i className={`${i.className} text-2xl  hover:text-[#F3D68D] bi bi-pause-fill`}></i>
+
+    return (
+        <svg className={`${i.className} cursor-pointer fill-white hover:fill-[#F3D68D]`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5" />
+        </svg>
+    )
 }

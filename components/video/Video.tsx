@@ -1,10 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from "react"
 import { iVideo } from "./interface"
-import { ExitFullscreenIcon, FullscreenIcon, PauseIcon, PlayIcon } from "@/icon"
+import { ExitFullscreenIcon, FullscreenIcon, PauseIcon, PlayIcon, SpeedIcon } from "@/icon"
 import { ConvertSecondToTime } from "@/config"
 import PipIcon from "@/icon/PipIcon"
 import Hls from "hls.js"
+import { VideoSpeedC } from "."
 
 
 export default function VideoC(p: iVideo) {
@@ -18,6 +19,7 @@ export default function VideoC(p: iVideo) {
     const [isMouseMove, SetIsMouseMove] = useState(false)
     const [t, SetT] = useState(0)
     const [typeDevice, SetTypeDevice] = useState("")
+    const [speed, SetSpeed] = useState(1)
     const f = async () => {
         var video = document.getElementById('video') as HTMLVideoElement;
 
@@ -30,13 +32,13 @@ export default function VideoC(p: iVideo) {
             hls.loadSource(p.link_m3u8);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function (e) {
-                video.play()
-                    .then(() => {
-                        SetIsPlay(true)
-                    })
-                    .catch(() => {
-                        SetIsPlay(false)
-                    })
+                // video.play()
+                //     .then(() => {
+                //         //SetIsPlay(true)
+                //     })
+                //     .catch(() => {
+                //         SetIsPlay(false)
+                //     })
                 video.ontimeupdate = (e) => {
                     SetCur((video.currentTime / video.duration) * 100)
                     SetCurrentTime(video.currentTime)
@@ -117,7 +119,7 @@ export default function VideoC(p: iVideo) {
         if (isMouseMove) {
             f = setTimeout(() => {
                 SetIsMouseMove(false)
-            }, 2000);
+            }, 20000000);
         }
 
         return () => {
@@ -136,23 +138,49 @@ export default function VideoC(p: iVideo) {
             }} onMouseLeave={() => {
                 SetIsMouseMove(false)
             }} className={`${isFullscreen ? "h-full w-auto" : "w-full sm:w-[70%] h-auto"}  relative `}>
-                <video id="video" controls={typeDevice == "m"} onClick={() => {
+                <video id="video" onClick={() => {
                     let vi = videoref.current
-                    if (vi) {
+                    if (vi && typeDevice == "p") {
+                        console.log("vào");
+
                         vi.paused ? SetIsPlay(true) : SetIsPlay(false)
                         vi.paused ? vi.play() : vi.pause()
+                        return
                     }
-                }
-                } ref={videoref} className="w-full h-auto">
+
+
+                }}
+
+                    onTouchStart={() => {
+                        SetIsMouseMove(true)
+                        SetT(Date.now())
+                    }}
+                    onDoubleClick={(ev) => {
+                        let vi = videoref.current
+                        if (!vi) {
+                            return
+                        }
+                        const width = vi.getBoundingClientRect().width
+                        const left = vi.getBoundingClientRect().left
+                        const x = ev.clientX - left
+                        if (x < width / 2) {
+                            vi.currentTime -= 10
+                        } else {
+                            vi.currentTime += 10
+                        }
+
+
+                    }}
+                    ref={videoref} className="w-full h-auto">
 
                 </video>
 
                 {isMouseMove ?
                     <>
-                        <div className="hidden lg:block top-0 absolute  left-0 w-full items-center bg-[#00000025] px-4">
+                        <div className=" top-0 absolute  left-0 w-full items-center bg-[#00000025] px-4">
                             <div className="py-2 font-bold">{p.nameMovie}</div>
                         </div>
-                        <div className="hidden lg:block bottom-0 absolute  left-0 w-full items-center bg-[#00000025] px-4">
+                        <div className=" bottom-0 absolute  left-0 w-full items-center bg-[#00000025] px-4">
                             <div onClick={(e) => {
                                 let vi = videoref.current
                                 const d = e.currentTarget
@@ -160,7 +188,8 @@ export default function VideoC(p: iVideo) {
                                 if (vi) {
                                     vi.currentTime = vi.duration * (cur / d.clientWidth)
                                 }
-                            }} className="w-full h-2 hover:h-5 cursor-pointer duration-500 bg-[#ffffff23] flex-1 relative ">
+                            }}
+                                className="w-full h-5 lg:h-2 hover:h-5 cursor-pointer duration-500 bg-[#ffffff23] flex-1 relative ">
                                 <div className="absolute top-0  z-10" style={{ backgroundColor: "red", width: `${cur}%`, height: "100%" }}></div>
                                 <div className="absolute top-0 z-0 bg-[#ffffff23]" style={{ width: `${loadedTime}%`, height: "100%" }}></div>
                             </div>
@@ -174,16 +203,24 @@ export default function VideoC(p: iVideo) {
                                             vi.paused ? SetIsPlay(true) : SetIsPlay(false)
                                             vi.paused ? vi.play() : vi.pause()
                                         }
-                                    }}>{!isplay ? <PlayIcon className="" /> : <PauseIcon className="" />}
+                                    }}>{!isplay ? <PlayIcon className="size-7.5 lg:size-5 hover:scale-150 duration-700" /> :
+                                        <PauseIcon className="size-7.5 lg:size-5 hover:scale-150 duration-700" />}
                                     </button>
                                     <div className="mx-2">{ConvertSecondToTime(currentTime)}</div>/
                                     <div className="mx-2">{ConvertSecondToTime(duration)}</div>
-                                    <div>
 
-                                    </div>
                                 </div>
-                                <div className="flex space-x-4">
-                                    <button className="hidden sm:block" onClick={() => {
+                                <div className="flex space-x-6 py-3 items-center">
+                                    <VideoSpeedC cur={speed} onchang={(v) => {
+                                        let vi = videoref.current
+                                        if (!vi) {
+                                            return
+                                        }
+                                        vi.playbackRate = v
+                                        SetSpeed(v)
+                                    }} />
+
+                                    <button className="hidden lg:block" onClick={() => {
                                         let vi = videoref.current
                                         if (!vi) {
                                             return
@@ -209,8 +246,8 @@ export default function VideoC(p: iVideo) {
                                         }
                                     }}>
                                         {isFullscreen ?
-                                            <ExitFullscreenIcon className="hover:scale-150 duration-700 size-5 cursor-pointer" /> :
-                                            <FullscreenIcon className="hover:scale-150 duration-700 size-5 cursor-pointer" />}
+                                            <ExitFullscreenIcon className="hover:scale-150 duration-700 size-7.5 lg:size-5 cursor-pointer" /> :
+                                            <FullscreenIcon className="hover:scale-150 duration-700 size-7.5 lg:size-5 cursor-pointer" />}
                                     </button>
                                 </div>
                             </div>
@@ -220,23 +257,6 @@ export default function VideoC(p: iVideo) {
                     <></>
                 }
             </div>
-        </div>
+        </div >
     )
 }
-// onClick={() => {
-
-// }} onKeyDown={(e) => {
-//     if (videoref.current) {
-
-//         switch (e.key) {
-//             case 'ArrowRight':
-//                 videoref.current.currentTime += 5
-//                 break;
-//             case 'ArrowLeft':
-//                 videoref.current.currentTime -= 5
-//                 break;
-//             default:
-//                 break;
-//         }
-//     }
-// }} 
