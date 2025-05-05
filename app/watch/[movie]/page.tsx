@@ -6,7 +6,6 @@ import { GetImage } from "@/config";
 import { domain } from "@/config/GetEnv";
 import { GetMovie, GetMovies, GetMoviesByCategory } from "@/service";
 import { Metadata, ResolvingMetadata } from "next";
-import { headers } from "next/headers";
 import Link from "next/link";
 
 export async function generateMetadata(
@@ -112,11 +111,11 @@ export default async function WatchPage(req: {
                     <div className=" flex flex-wrap ">
                       {episodes.server_data.map((server_data, j) => {
                         {
-                          return <div className="w-1/3 h-auto lg:w-1/5 flex p-1">
+                          return <div className="w-1/4 h-auto lg:w-1/5 flex p-1">
                             {(episodesI === (i + 1 + "") && serverdataJ === (j + 1 + "")) ?
-                              <Link key={server_data.filename} href={`/watch/${movie.slug}?a=${i + 1}&b=${j + 1}?a=${i + 1}&b=${j + 1}`} className="size-full py-4 text-center rounded-3xl bg-amber-400 " >
+                              <Link key={server_data.filename} href={`/watch/${movie.slug}?a=${i + 1}&b=${j + 1}?a=${i + 1}&b=${j + 1}`} className="size-full py-4 text-center rounded-sm lg:rounded-3xl bg-amber-400 " >
                                 {server_data.name}
-                              </Link> : <Link key={server_data.filename} href={`/watch/${movie.slug}?a=${i + 1}&b=${j + 1}`} className="size-full py-4 bg-black text-center rounded-3xl hover:bg-amber-400 " >
+                              </Link> : <Link key={server_data.filename} href={`/watch/${movie.slug}?a=${i + 1}&b=${j + 1}`} className="size-full py-4 bg-black text-center rounded-sm lg:rounded-3xl hover:bg-amber-400 " >
                                 {server_data.name}
                               </Link>}
                           </div>
