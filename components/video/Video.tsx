@@ -6,6 +6,7 @@ import { ConvertSecondToTime } from "@/config"
 import PipIcon from "@/icon/PipIcon"
 import Hls from "hls.js"
 import { VideoSpeedC } from "."
+import Volume from "./Volume"
 
 
 export default function VideoC(p: iVideo) {
@@ -20,6 +21,7 @@ export default function VideoC(p: iVideo) {
     const [t, SetT] = useState(0)
     const [typeDevice, SetTypeDevice] = useState("")
     const [speed, SetSpeed] = useState(1)
+    const [volume, SetVolume] = useState(100)
     const f = async () => {
         var video = document.getElementById('video') as HTMLVideoElement;
 
@@ -32,13 +34,6 @@ export default function VideoC(p: iVideo) {
             hls.loadSource(p.link_m3u8);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function (e) {
-                // video.play()
-                //     .then(() => {
-                //         //SetIsPlay(true)
-                //     })
-                //     .catch(() => {
-                //         SetIsPlay(false)
-                //     })
                 video.ontimeupdate = (e) => {
                     SetCur((video.currentTime / video.duration) * 100)
                     SetCurrentTime(video.currentTime)
@@ -53,9 +48,6 @@ export default function VideoC(p: iVideo) {
             })
 
         }
-        // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-        // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-        // This is using the built-in support of the plain video element, without using hls.js.
         else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = p.link_m3u8;
 
@@ -119,7 +111,7 @@ export default function VideoC(p: iVideo) {
         if (isMouseMove) {
             f = setTimeout(() => {
                 SetIsMouseMove(false)
-            }, 20000000);
+            }, 3000);
         }
 
         return () => {
@@ -206,6 +198,13 @@ export default function VideoC(p: iVideo) {
                                     }}>{!isplay ? <PlayIcon className="size-7.5 lg:size-5 hover:scale-150 duration-700" /> :
                                         <PauseIcon className="size-7.5 lg:size-5 hover:scale-150 duration-700" />}
                                     </button>
+                                    <Volume onChange={(v) => {
+                                        SetVolume(v)
+                                        let vi = videoref.current
+                                        if (vi) {
+                                            vi.volume = v / 100
+                                        }
+                                    }} vo={volume} />
                                     <div className="mx-2">{ConvertSecondToTime(currentTime)}</div>/
                                     <div className="mx-2">{ConvertSecondToTime(duration)}</div>
 
