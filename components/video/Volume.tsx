@@ -4,31 +4,41 @@ import { BigVolumeIcon } from "@/icon/BigVolumeIcon";
 import { MediumVolumeIcon } from "@/icon/MediumVolumeIcon";
 import { MuteVolumeIcon } from "@/icon/MuteVolumeIcon";
 import { SmallVolumeIcon } from "@/icon/SmallVolumeIcon";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface iVolume {
     value: number;
 }
 export default function Volume(p: { vo: number, onChange(n: number): void }) {
+    useEffect(() => {
+        const handle = (e: WheelEvent) => {
+            e.preventDefault()
+            var cur = e.deltaY;
+            var o = 4;
+            if (cur < 0) {
+                if (p.vo >= 100) {
+                    return;
+                }
+                p.onChange(p.vo + o);
+            } else {
+                if (p.vo > 0) {
+                    p.onChange(p.vo - o);
+                }
+            }
+        }
+        const f = document.getElementById("f")
+        if (f) {
+            f.addEventListener("wheel", handle, { passive: false })
+        }
 
+        return () => {
+            f?.removeEventListener("wheel", handle)
+        };
+    }, [p]);
     return (
         <div
-            className="flex items-center cursor-pointer space-x-2 border-2 border-black hover:border-gray-400 p-2 rounded-xl"
-            onWheel={(e) => {
-                e.stopPropagation()
-                var cur = e.deltaY;
-                var o = 4;
-                if (cur < 0) {
-                    if (p.vo >= 100) {
-                        return;
-                    }
-                    p.onChange(p.vo + o);
-                } else {
-                    if (p.vo > 0) {
-                        p.onChange(p.vo - o);
-                    }
-                }
-            }}
+            id="f"
+            className="flex f items-center cursor-pointer space-x-2 border-2 border-black hover:border-gray-400 p-2 rounded-xl"
         >
             <button>
                 <VolumeCase value={p.vo} />
