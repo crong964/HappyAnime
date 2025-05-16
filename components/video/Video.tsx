@@ -133,8 +133,6 @@ export default function VideoC(p: iVideo) {
                 <video id="video" onClick={() => {
                     let vi = videoref.current
                     if (vi && typeDevice == "p") {
-                        console.log("vào");
-
                         vi.paused ? SetIsPlay(true) : SetIsPlay(false)
                         vi.paused ? vi.play() : vi.pause()
                         return

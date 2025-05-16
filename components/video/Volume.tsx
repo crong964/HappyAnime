@@ -38,7 +38,7 @@ export default function Volume(p: { vo: number, onChange(n: number): void }) {
     return (
         <div
             id="f"
-            className="flex f items-center cursor-pointer space-x-2 border-2 border-black hover:border-gray-400 p-2 rounded-xl"
+            className="hidden lg:flex f items-center cursor-pointer space-x-2 border-2 border-black hover:border-gray-400 p-2 rounded-xl"
         >
             <button>
                 <VolumeCase value={p.vo} />
