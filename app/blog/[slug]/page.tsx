@@ -12,7 +12,7 @@ interface Props {
 }
 export async function generateMetadata(p: Props): Promise<Metadata> {
     const id = (await p.params).slug
-    const blog = (await GetApi(`${domain || ""}/api/blog/${id}`)).d
+    const blog = (await GetApi(`${domain || ""}/api/blog/${id}`))?.d
     if (blog) {
         return {
             keywords: blog.keywords,
@@ -29,7 +29,7 @@ export async function generateMetadata(p: Props): Promise<Metadata> {
 }
 export default async function IdBlogPage({ params, }: Props) {
     const id = (await params).slug
-    const blog = (await GetApi(`${domain || ""}/api/blog/${id}`)).d
+    const blog = (await GetApi(`${domain || ""}/api/blog/${id}`))?.d
 
     if (blog == undefined) {
         return (
