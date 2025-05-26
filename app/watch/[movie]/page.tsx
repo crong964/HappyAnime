@@ -6,7 +6,6 @@ import { GetImage } from "@/config";
 import { domain } from "@/config/GetEnv";
 import { GetMovie, GetMovies, GetMoviesByCategory } from "@/service";
 import { Metadata, ResolvingMetadata } from "next";
-import { headers } from "next/headers";
 import Link from "next/link";
 
 export async function generateMetadata(
@@ -16,13 +15,7 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const headersList = await headers()
-  const userAgent = headersList.get('user-agent')
-  if (userAgent) {
-    if (userAgent?.indexOf("openai") >= 0 || userAgent?.indexOf("openai") >= 0) {
-      return {}
-    }
-  }
+
   let episodesI = (await searchParams).a
   let serverdataJ = (await searchParams).b
 
@@ -53,19 +46,8 @@ export default async function WatchPage(req: {
   params: Promise<{ movie: string }>,
   searchParams: Promise<{ a: string, b: string }>
 }) {
-
-  const headersList = await headers()
-  const userAgent = headersList.get('user-agent')
-  console.log(userAgent);
-
-  if (userAgent) {
-    if (userAgent?.indexOf("openai") >= 0 || userAgent?.indexOf("openai") >= 0) {
-      return <div></div>
-    }
-  }
-
-
   const slug = (await req.params).movie
+
   const data = await GetMovie(slug)
   let episodesI = (await req.searchParams).a
   let serverdataJ = (await req.searchParams).b
