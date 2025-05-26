@@ -6,7 +6,7 @@ export interface ApiReponseMovie {
     id: string;
     title: string;
     url: string;
-    image: string;
+    image: string; 
     release_date: string;
     genres: string[];
     other_name: string;
