@@ -56,6 +56,7 @@ export default async function WatchPage(req: {
 
   const headersList = await headers()
   const userAgent = headersList.get('user-agent')
+  console.log(userAgent);
 
   if (userAgent) {
     if (userAgent?.indexOf("openai") >= 0 || userAgent?.indexOf("openai") >= 0) {
