@@ -16,7 +16,13 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-
+  const headersList = await headers()
+  const userAgent = headersList.get('user-agent')
+  if (userAgent) {
+    if (userAgent?.indexOf("openai") >= 0 || userAgent?.indexOf("openai") >= 0) {
+      return {}
+    }
+  }
   let episodesI = (await searchParams).a
   let serverdataJ = (await searchParams).b
 
