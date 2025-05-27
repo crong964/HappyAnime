@@ -35,6 +35,7 @@ export default async function IdBlogPage({ params, }: Props) {
         return (
             <Link href={'/blog'} className="h-screen w-full flex justify-center font-bold text-5xl items-center">
                 Không có bài viết này
+                {domain || ""}
             </Link>
         )
     }
